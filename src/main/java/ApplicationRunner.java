@@ -1,8 +1,5 @@
 import com.spring.database.pool.ConnectionPool;
 import com.spring.database.repository.CompanyRepository;
-import com.spring.database.repository.UserRepository;
-import com.spring.ioc.Container;
-import com.spring.service.UserService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class ApplicationRunner {
