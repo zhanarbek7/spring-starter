@@ -8,4 +8,16 @@ public class CompanyRepository {
     public CompanyRepository(ConnectionPool connectionPool) {
         this.connectionPool = connectionPool;
     }
+
+    public static CompanyRepository of(ConnectionPool connectionPool){
+        System.out.println("This is factory method");
+         return new CompanyRepository(connectionPool);
+    }
+
+    @Override
+    public String toString() {
+        return "CompanyRepository{" +
+                "connectionPool=" + connectionPool +
+                '}';
+    }
 }
