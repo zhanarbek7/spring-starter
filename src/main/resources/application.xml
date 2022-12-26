@@ -4,7 +4,26 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-    <bean id="pool1" name="p1,p2,p3" class="com.spring.database.pool.ConnectionPool" />
-    <bean id="pool2" name="p4" class="com.spring.database.pool.ConnectionPool" />
+    <bean id="driver" class="java.lang.String">
+        <constructor-arg type="java.lang.String" value="PostgresDriver"/>
+    </bean>
+
+    <bean id="pool1" name="p1,p2,p3" class="com.spring.database.pool.ConnectionPool" >
+        <constructor-arg name="username" type="java.lang.String" value="postgres"/>
+        <constructor-arg index="2" type="java.util.List">
+            <list>
+                <value>value1</value>
+                <value>value2</value>
+            </list>
+        </constructor-arg>
+        <constructor-arg name="poolSize" type="java.lang.Integer" value="10"/>
+        <constructor-arg index="3" type="java.util.Map">
+            <map>
+                <entry key="url" value="postgresurl"/>
+                <entry key="password" value=""/>
+            </map>
+        </constructor-arg>
+    </bean>
+<!--    <bean id="pool2" name="p4" class="com.spring.database.pool.ConnectionPool" />-->
 
 </beans>
