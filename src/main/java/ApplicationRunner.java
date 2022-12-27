@@ -8,8 +8,11 @@ public class ApplicationRunner {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("application.xml");
         ConnectionPool connectionPool = context.getBean("pool1", ConnectionPool.class);
         CompanyRepository companyRepository = context.getBean("companyRepository", CompanyRepository.class);
-        System.out.println(connectionPool);
         System.out.println(companyRepository);
+        companyRepository.setName("Altynbek");
+        CompanyRepository companyRepository2 = context.getBean("companyRepository", CompanyRepository.class);
+        System.out.println(companyRepository2);
+        System.out.println(connectionPool);
     }
 
 }
