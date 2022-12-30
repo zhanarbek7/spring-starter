@@ -9,8 +9,9 @@ public class ApplicationRunner {
         CompanyRepository companyRepository;
         try (ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("application.xml")) {
             connectionPool = context.getBean("pool1", ConnectionPool.class);
-            companyRepository = context.getBean("companyRepository", CompanyRepository.class);
             System.out.println(connectionPool);
+
+            companyRepository = context.getBean("companyRepository", CompanyRepository.class);
             System.out.println(companyRepository);
         }
 

@@ -4,7 +4,11 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
+    <context:annotation-config/>
     <context:property-placeholder location="classpath:application.properties"/>
+
+<!--    This bean used to make @PostConstruct and @PreDestroy work-->
+<!--    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>-->
 <!--    <bean class = "org.springframework.context.support.PropertySourcesPlaceholderConfigurer">-->
 <!--        <property name="locations" value="application.properties"/>-->
 <!--    </bean>-->
@@ -25,9 +29,7 @@
         <constructor-arg type="java.lang.String" ref = "companyName"/>
     </bean>
 
-    <bean id="pool1" name="p1,p2,p3" class="com.spring.database.pool.ConnectionPool"
-        init-method ="init"
-        destroy-method="destroy">
+    <bean id="pool1" name="p1,p2,p3" class="com.spring.database.pool.ConnectionPool">
         <constructor-arg name="username" type="java.lang.String" value="${db.username}"/>
         <constructor-arg index="2" type="java.util.List">
             <list>
