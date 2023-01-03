@@ -4,12 +4,9 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:annotation-config/>
+    <context:component-scan base-package="com.spring"/>
     <context:property-placeholder location="classpath:application.properties"/>
 
-    <bean class="com.spring.bpp.InjectBeanPostProcessor"/>
-    <bean class="com.spring.bpp.TransactionBeanPostProcessor"/>
-    <bean class="com.spring.bpp.AuditingBeanPostProcessor"/>
 
 <!--    This bean used to make @PostConstruct and @PreDestroy work-->
 <!--    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>-->
@@ -17,42 +14,28 @@
 <!--        <property name="locations" value="application.properties"/>-->
 <!--    </bean>-->
 
-    <bean class="com.spring.bfpp.LogBeanFactoryPostProcessor"/>
-    <bean class="com.spring.bfpp.VerifyPropertyBeanFactoryPostProcessor "/>
+
+<!--    <constructor-arg index="2" type="java.util.List">-->
+<!--        <list>-->
+<!--            <value>value1</value>-->
+<!--            <value>value2</value>-->
+<!--            <ref bean="driver"/>-->
+<!--        </list>-->
+<!--    </constructor-arg>-->
+<!--    <property name="properties" >-->
+<!--        <map>-->
+<!--            <entry key="url" value="postgresurl"/>-->
+<!--            <entry key="password" value=""/>-->
+<!--            <entry key="driver" value-ref="driver"/>-->
+<!--            <entry key="test" value="#{driver}"/>-->
+<!--            <entry key="hosts" value="#{'${db.host}'.split(',')}"/>-->
+<!--            <entry key="currentUser" value="#{systemProperties['user.name']}"/>-->
+<!--        </map>-->
+<!--    </property>-->
 
     <bean id="driver" class = "java.lang.String">
         <constructor-arg type="java.lang.String" value="${db.driver}"/>
     </bean>
-
-    <bean id="companyName" class="java.lang.String">
-        <constructor-arg type="java.lang.String" value="Zhanarbek"/>
-    </bean>
-
     <bean id="companyRepository" class="com.spring.database.repository.CompanyRepository"/>
-    <bean id="pool2" class="com.spring.database.pool.ConnectionPool"/>
-    <bean id="pool1" name="p1,p2,p3" class="com.spring.database.pool.ConnectionPool">
-        <constructor-arg name="username" type="java.lang.String" value="${db.username}"/>
-        <constructor-arg index="2" type="java.util.List">
-            <list>
-                <value>value1</value>
-                <value>value2</value>
-                <ref bean="driver"/>
-            </list>
-        </constructor-arg>
-        <constructor-arg name="poolSize" type="java.lang.Integer" value="${db.pool.size}"/>
-        <constructor-arg index="3" type="java.util.Map">
-            <null/>
-        </constructor-arg>
-        <property name="properties" >
-            <map>
-                <entry key="url" value="postgresurl"/>
-                <entry key="password" value=""/>
-                <entry key="driver" value-ref="driver"/>
-                <entry key="test" value="#{driver}"/>
-                <entry key="hosts" value="#{'${db.host}'.split(',')}"/>
-                <entry key="currentUser" value="#{systemProperties['user.name']}"/>
-            </map>
-        </property>
-    </bean>
 
 </beans>
