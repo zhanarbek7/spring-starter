@@ -4,8 +4,16 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:component-scan base-package="com.spring"/>
-    <context:property-placeholder location="classpath:application.properties"/>
+    <context:component-scan base-package="com.spring"
+                            annotation-config="true"
+                            resource-pattern="**/*.class"
+                            scoped-proxy="no"
+                            >
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
+        <context:include-filter type="regex" expression="com\..+Repository]"/>
+    </context:component-scan>
+
+<!--    <context:property-placeholder location="classpath:application.properties"/>-->
 
 
 <!--    This bean used to make @PostConstruct and @PreDestroy work-->
@@ -36,6 +44,7 @@
     <bean id="driver" class = "java.lang.String">
         <constructor-arg type="java.lang.String" value="${db.driver}"/>
     </bean>
+
     <bean id="companyRepository" class="com.spring.database.repository.CompanyRepository"/>
 
 </beans>
