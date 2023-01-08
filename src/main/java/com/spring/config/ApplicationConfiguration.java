@@ -2,13 +2,10 @@ package com.spring.config;
 import com.spring.database.pool.ConnectionPool;
 import com.spring.database.repository.CrudRepository;
 import com.spring.database.repository.UserRepository;
-import com.web.web.WebConfiguration;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import com.web.config.WebConfiguration;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
 import org.springframework.context.annotation.ComponentScan.Filter;
-import org.springframework.core.env.ConfigurablePropertyResolver;
 import org.springframework.stereotype.Component;
 
 //@ImportResource("classpath:application.xml")
